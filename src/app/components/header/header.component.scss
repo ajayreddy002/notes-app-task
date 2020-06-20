@@ -26,6 +26,40 @@
                 color: #333333;
             }
         }
+        .delete--icon {
+            margin-right: 20px;
+            width: 45px;
+            height: 35px;
+            background: #F9F8F9;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            justify-content: center;
+            cursor: pointer;
+            i {
+                font-size: 19px;
+                color: #333333;
+            }
+        }
+        .edit--icon {
+            margin-right: 20px;
+            width: 45px;
+            height: 35px;
+            background: #F9F8F9;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            justify-content: center;
+            cursor: pointer;
+            &.disabled {
+                pointer-events: none;
+                background-color: #8a8a81;
+            }
+            i {
+                font-size: 19px;
+                color: #333333;
+            }
+        }
         .side--icon {
             margin-right: 20px;
             width: 45px;

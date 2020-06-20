@@ -27,10 +27,10 @@
                 </g>
             </svg>
         </div>
-        <div class="edit--icon">
-            <i class="fas fa-edit"></i>
+        <div class="edit--icon"  [ngClass]="{'disabled': !isDisabled}">
+            <i (click)="addNotes()" class="fas fa-edit" ></i>
         </div>
-        <div class="edit--icon">
+        <div class="delete--icon" (click)="deleteNote()">
             <i class="fas fa-trash"></i>
         </div>
     </div>

@@ -20,6 +20,21 @@
       overflow-y: auto;
       margin-top: 45px;
       position: fixed;
+      transition: 0.3s ease-in;
+
+      &.collapse {
+        width: 100px;
+
+        .editor--block {
+          margin-left: 100px;
+        }
+        .description {
+          display: none;
+        }
+        .title {
+          width: 50px !important;
+        }
+      }
 
       .notes--block {
         margin-top: 10px;

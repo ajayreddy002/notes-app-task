@@ -17,6 +17,7 @@ export class NotesComponent implements OnInit {
   isReady: boolean;
   clickedNote: any;
   filteredList: INotesModel[] = [];
+  isCollapse = false;
   constructor() { }
 
   ngOnInit(): void {
@@ -31,15 +32,10 @@ export class NotesComponent implements OnInit {
       }
     }
   }
-  // onFocus (e){
-  //   if(this.notesText === '' && this.notesList.length === 0){
-  //     this.notesList.push({id: this.id,title: 'New Notes', description: 'No additioanl content',
-  //      createdDate: new Date(), upDatedDate: new Date()})
-  //      console.log(this.notesList)
-  //   }
-  // }
+
   addNotesToArray(event) {
     if (event === true) {
+      // Here checking is it for edit or add
       if (this.clickedNote !== undefined && this.clickedNote !== null) {
         this.notesList.map(item => {
           if (item.id === this.clickedNote.id) {
@@ -52,9 +48,8 @@ export class NotesComponent implements OnInit {
       } else {
         this.notesList.push({
           title: this.notesText,
-          description: 'No additioanl content',
+          description: 'No Additional content',
           createdDate: new Date(),
-          upDatedDate: new Date(),
           id: this.id++
         });
         this.filteredList = this.notesList;
@@ -63,12 +58,8 @@ export class NotesComponent implements OnInit {
       this.notesText = '';
     }
   }
-  onEnter(thing: HTMLTextAreaElement) {
-    console.log(thing);
-    this.counter = ++thing.rows;
-    console.log("textarea.rows:", this.counter);
-  }
   editNotes(note) {
+    // Here storing clicked note for edit the selected notes
     this.clickedNote = note;
     this.isReady = false;
     this.notesText = note.title
@@ -78,12 +69,15 @@ export class NotesComponent implements OnInit {
       const index = this.notesList.findIndex(index => this.clickedNote.id === index.id);
       this.notesList.splice(index, 1)
       this.clickedNote = null;
+      this.notesText = ''
     }
     if (this.notesList.length <= 0) {
       this.isReady = true;
       this.notesText = ''
     }
   }
+
+  // Global search of list
   globalSearch(event) {
     const filterValue = event.target.value.toLowerCase();
     let filteredList = this.filteredList.filter((item) => {
@@ -93,5 +87,10 @@ export class NotesComponent implements OnInit {
     });
     this.notesList = filteredList;
     console.log(this.notesList)
+  }
+
+  // Toggle sidenav
+  toggleSideNav(event: boolean) {
+    this.isCollapse = !this.isCollapse;
   }
 }

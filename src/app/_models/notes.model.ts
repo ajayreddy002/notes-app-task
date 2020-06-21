@@ -3,5 +3,4 @@ export interface INotesModel {
     title: string;
     description: string;
     createdDate: Date;
-    upDatedDate: Date;
 }

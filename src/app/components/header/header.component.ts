@@ -7,10 +7,11 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitte
 })
 export class HeaderComponent implements OnInit, OnChanges {
   @Input() notesText: string
-  @Output() isDisabled:any =  new EventEmitter();
-  @Output() saveNotes:any = new EventEmitter();
-  @Output() deleteNotes:any = new EventEmitter();
-  @Output() search:any = new EventEmitter();
+  isDisabled: boolean;
+  @Output() saveNotes = new EventEmitter();
+  @Output() deleteNotes = new EventEmitter();
+  @Output() search = new EventEmitter();
+  @Output() toggleSide = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit, OnChanges {
       }
     }
   }
-  
+
   addNotes() {
     this.saveNotes.emit(true)
   }
@@ -34,5 +35,8 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
   getSearchValue(e) {
     this.search.emit(event)
+  }
+  toggleSideNav(){
+    this.toggleSide.emit(true)
   }
 }

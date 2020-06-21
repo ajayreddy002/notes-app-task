@@ -1,28 +1,28 @@
 <div class="main--block">
     <div class="header--block">
         <!-- Header block -->
-        <app-header [notesText]="notesText" (saveNotes)="addNotesToArray($event)" 
-        (search)="globalSearch($event)"
-        (deleteNotes)="deleteNotes($event)">
+        <app-header [notesText]="notesText" (saveNotes)="addNotesToArray($event)" (search)="globalSearch($event)"
+            (deleteNotes)="deleteNotes($event)" (toggleSide)="toggleSideNav($event)">
         </app-header>
     </div>
     <div class="body--block">
-        <div class="side--nav">
+        <div class="side--nav" [ngClass]="{'collapse': isCollapse}">
             <!-- This is for new note object -->
             <ng-container *ngIf="isReady">
                 <div class="notes--block">
                     <div class="note--header">
-                        <h2>{{notesText !== '' ? notesText: 'New Note'}}</h2>
+                        <h2 class="title">{{notesText !== '' ? notesText: 'New Note'}}</h2>
                     </div>
                     <div class="description">
                         <p>{{currentDate | date:'shortTime'}} no additioanl text</p>
                     </div>
                 </div>
             </ng-container>
+            <!-- List of notes list -->
             <ng-container *ngIf="notesList?.length > 0">
                 <div class="notes--block" *ngFor="let note of notesList" (click)="editNotes(note)">
                     <div class="note--header">
-                        <h2>{{note?.title}}</h2>
+                        <h2 class="title">{{note?.title}}</h2>
                     </div>
                     <div class="description">
                         <p>{{note?.createdDate | date:'shortTime'}} no additioanl text</p>
@@ -32,8 +32,7 @@
         </div>
         <div class="editor--block">
             <p *ngIf="currentDate">{{currentDate | date:'mediumDate'}} at {{currentDate | date: 'shortTime'}}</p>
-            <textarea #textarea (keyup.enter)="onEnter(textarea)" [(ngModel)]="notesText" name="" id="" rows="1"
-                (input)="getText($event)"></textarea>
+            <textarea #textarea [(ngModel)]="notesText" (input)="getText($event)"></textarea>
         </div>
     </div>
 </div>

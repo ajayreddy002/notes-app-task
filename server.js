@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 // Run the app by serving the static files
 // in the dist directory
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/dist/automateiotask'));
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname + '/dist/automateiotask/index.html'));
   });

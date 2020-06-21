@@ -20,7 +20,7 @@
             </ng-container>
             <!-- List of notes list -->
             <ng-container *ngIf="notesList?.length > 0">
-                <div class="notes--block" *ngFor="let note of notesList" (click)="editNotes(note)">
+                <div class="notes--block" *ngFor="let note of notesList| searchFilter:searchValue" (click)="editNotes(note)">
                     <div class="note--header">
                         <h2 class="title">{{note?.title}}</h2>
                     </div>

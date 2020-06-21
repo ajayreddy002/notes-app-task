@@ -18,6 +18,7 @@ export class NotesComponent implements OnInit {
   clickedNote: any;
   filteredList: INotesModel[] = [];
   isCollapse = false;
+  searchValue: any;
   constructor() { }
 
   ngOnInit(): void {
@@ -77,16 +78,9 @@ export class NotesComponent implements OnInit {
     }
   }
 
-  // Global search of list
   globalSearch(event) {
-    const filterValue = event.target.value.toLowerCase();
-    let filteredList = this.filteredList.filter((item) => {
-      /** Filtering through Title  || Description */
-      return (item.title.toLowerCase().match(filterValue))
-        || (item.description.toLowerCase().match(filterValue))
-    });
-    this.notesList = filteredList;
-    console.log(this.notesList)
+    // getting the value from child
+    this.searchValue = event.target.value;
   }
 
   // Toggle sidenav

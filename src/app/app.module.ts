@@ -7,11 +7,13 @@ import { NotesComponent } from './components/notes/notes.component';
 import { HeaderComponent } from './components/header/header.component';
 import {FormsModule}from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SearchFilter } from './filters/_searchfilter';
 @NgModule({
   declarations: [
     AppComponent,
     NotesComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchFilter
   ],
   imports: [
     BrowserModule,

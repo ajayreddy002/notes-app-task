@@ -34,10 +34,11 @@
             <i class="fas fa-trash"></i>
         </div>
     </div>
+    <!-- Seacrh block -->
     <div class="search--block">
         <div class="input--block">
             <i class="fas fa-search"></i>
-            <input type="text" placeholder="search...">
+            <input type="text" placeholder="search..." (input)="getSearchValue($event)">
         </div>
     </div>
 </div>

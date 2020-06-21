@@ -16,6 +16,7 @@ export class NotesComponent implements OnInit {
   counter: number;
   isReady: boolean;
   clickedNote: any;
+  filteredList: INotesModel[] = [];
   constructor() { }
 
   ngOnInit(): void {
@@ -23,7 +24,7 @@ export class NotesComponent implements OnInit {
   getText(e) {
     if (e.target.value) {
       this.isReady = true;
-      if(this.clickedNote !== undefined && this.clickedNote !== null){
+      if (this.clickedNote !== undefined && this.clickedNote !== null) {
         this.clickedNote.title = this.notesText
       }
     }
@@ -43,7 +44,8 @@ export class NotesComponent implements OnInit {
             item.title = this.notesText;
             item.createdDate = new Date()
           }
-        })
+        });
+        this.filteredList = this.notesList;
         this.clickedNote = null;
       } else {
         this.notesList.push({
@@ -53,6 +55,7 @@ export class NotesComponent implements OnInit {
           upDatedDate: new Date(),
           id: this.id++
         });
+        this.filteredList = this.notesList;
         this.clickedNote = null;
       }
       this.notesText = '';
@@ -74,9 +77,19 @@ export class NotesComponent implements OnInit {
       this.notesList.splice(index, 1)
       this.clickedNote = null;
     }
-    if(this.notesList.length <= 0){
+    if (this.notesList.length <= 0) {
       this.isReady = true;
       this.notesText = ''
     }
+  }
+  globalSearch(event) {
+    const filterValue = event.target.value.toLowerCase();
+    let filteredList = this.filteredList.filter((item) => {
+      /** Filtering through Title  || Description */
+      return (item.title.toLowerCase().match(filterValue))
+        || (item.description.toLowerCase().match(filterValue))
+    });
+    this.notesList = filteredList;
+    console.log(this.notesList)
   }
 }

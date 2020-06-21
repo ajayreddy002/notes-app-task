@@ -10,11 +10,13 @@ export class HeaderComponent implements OnInit, OnChanges {
   @Output() isDisabled:any =  new EventEmitter();
   @Output() saveNotes:any = new EventEmitter();
   @Output() deleteNotes:any = new EventEmitter();
+  @Output() search:any = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
   ngOnChanges(changes: SimpleChanges) {
+    // Getting enetered text from parent
     if (changes['notesText']) {
       if (this.notesText !== undefined && this.notesText !== '') {
         this.isDisabled = true;
@@ -23,10 +25,14 @@ export class HeaderComponent implements OnInit, OnChanges {
       }
     }
   }
+  
   addNotes() {
     this.saveNotes.emit(true)
   }
   deleteNote() {
     this.deleteNotes.emit(true)
+  }
+  getSearchValue(e) {
+    this.search.emit(event)
   }
 }

@@ -22,6 +22,8 @@ export class NotesComponent implements OnInit {
   ngOnInit(): void {
   }
   getText(e) {
+    // Inorder to update the time 
+    this.currentDate = new Date();
     if (e.target.value) {
       this.isReady = true;
       if (this.clickedNote !== undefined && this.clickedNote !== null) {
